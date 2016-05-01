@@ -1,0 +1,59 @@
+#include <cstdio>
+#include <string>
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <tuple>
+#include "rapidjson/document.h"
+#include "rapidjson/prettywriter.h"
+#include "rapidjson/filereadstream.h"
+#include "rapidjson/filewritestream.h"
+#include "rapidjson/stringbuffer.h"
+
+using namespace std;
+using namespace rapidjson;
+
+void json_analysis(const string filename, vector<tuple<string, int, int>> &result)
+{ 
+	ifstream json_file;
+	json_file.open(filename.c_str());
+	string json;
+	if (!json_file.is_open())
+	{
+		cout << "Error opening file" << endl;
+		exit(1);
+	}
+	getline(json_file, json);
+	Document d;
+	d.Parse<0>(json.c_str());
+	Value & ques = d["questions"];
+	string temp_ques;
+	int temp_ima_id, temp_ques_id;
+	if (ques.IsArray())
+	{
+		for (size_t i = 0; i < ques.Size(); ++i)
+		{
+			Value & v = ques[i];
+			assert(v.IsObject());
+			if (v.HasMember("question") && v["question"].IsString()) {
+				temp_ques = v["question"].GetString();
+			}
+			if (v.HasMember("image_id") && v["image_id"].IsInt()) {
+				temp_ima_id = v["image_id"].GetInt();
+			}
+			if (v.HasMember("question_id") && v["question_id"].IsInt()) {
+				temp_ques_id = v["question_id"].GetInt();
+			}
+			auto temp = make_tuple(temp_ques, temp_ima_id, temp_ques_id);
+			result.push_back(temp);
+		}
+	}
+	/*
+	for (size_t i = 0; i < result.size(); i++){
+		cout << get<0>(result[i]) << endl;
+		cout << get<1>(result[i]) << endl;
+		cout << get<2>(result[i]) << endl;
+	}
+	return 0;
+	*/
+}
