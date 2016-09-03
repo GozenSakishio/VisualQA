@@ -23,7 +23,7 @@
  
 * Visual Genome
     1. 数据集描述：应该是这次数据搜集中最大的数据集了。图片来源于 Visual Genome项目，包含大量的场景图。问题以七个W（即who, what, where, when, why, how, which)开头, 另外分free-form和region-based两类。该数据集的问答基数和多样性要比COCO-QA数据集大（在COCO中前1000个最频繁出现的答案几乎占总答案的80%， 但这个数据集之占64%）。
-    2. 数据集[地址]（https://visualgenome.org/api/v0/api_home.html）
+    2. 数据集[地址](https://visualgenome.org/api/v0/api_home.html)
     3. 图片数量: 
     4. 问题数量：
     5. 答案数量：
