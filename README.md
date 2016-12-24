@@ -20,7 +20,7 @@ Visual Question Answer system
 <p>
 ![demo_3](./images/demo_3.png)
 <p>
-[Here]("http://o6qr23o6z.bkt.clouddn.com/demo.mp4") is demo video
+[Here](http://o6qr23o6z.bkt.clouddn.com/demo.mp4) is demo video
 <br></br>
 #### 2016/8 New model using LSTM
 * LSTM to train question, and without image information
